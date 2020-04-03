@@ -18,3 +18,5 @@ Proiectul se doreste a fi unul cat mai minimalist si mai simplu de folosit, pent
 2. Integrarea intre backend și frontend ar putea fi un impediment, deoarece interfata va folosi Reactjs, fiind primul proiect complet de acest tip la care lucram
 
 ### Diagrame
+
+![diagramfinal](https://user-images.githubusercontent.com/38556155/78350138-5ab7ac00-75ad-11ea-8c4a-ff8add8f55e2.png)
