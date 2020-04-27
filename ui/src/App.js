@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  HashRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {AppMenu} from './components/app-menu/AppMenu'
+import logo from './logo.svg';
+import {
+  PATHS,
+  PATHS_CONFIG
+} from './config/route-config';
+
+import './scss/App.scss';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.routes = Object.entries(PATHS_CONFIG).map(([path, component]) => (
+      <Route key={`${path}`} path={path} component={component} />
+    ));
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <AppMenu />
+          <main className="content-routed">
+            <Switch>
+              <Route exact path="/" render={() => (
+                <Redirect to={PATHS.homepage} />
+              )} />
+              {this.routes}
+            </Switch>
+          </main>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
