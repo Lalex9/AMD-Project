@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ce7186-5755-48a4-bf4f-8c44e7a3d677" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AmdApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/AmdApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -146,7 +147,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585221613945</updated>
       <workItem from="1585221616801" duration="2116000" />
-      <workItem from="1588505661366" duration="7493000" />
+      <workItem from="1588505661366" duration="9110000" />
     </task>
     <servers />
   </component>
