@@ -21,14 +21,16 @@ public class AmdApplication {
         return "Hello World";
     }
 
-    @GetMapping("/search")
-    public String searchMoviesWithName(@RequestParam(value = "name", defaultValue = "Star Wars") String title) {
+    @GetMapping("/searchMovie")
+    public String searchMoviesWithName(@RequestParam(value = "title", defaultValue = "") String title,
+                                       @RequestParam(value = "id", defaultValue = "") String id) {
+        if (title.isEmpty() && id.isEmpty()) {
+            return "Use the \"title\" or the \"id\" parameters to acces the endpoint.";
+        }
+
+        if (!id.isEmpty()) {
+            return OMDbWebServiceClient.searchMovieByID(id);
+        }
         return OMDbWebServiceClient.searchMovieByTitle(title);
     }
-
-    @GetMapping("/movie")
-    public String getMovieWithId(@RequestParam(value = "id", defaultValue = "tt0076759") String id) {
-        return OMDbWebServiceClient.searchMovieByID(id);
-    }
-
 }
