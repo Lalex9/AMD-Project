@@ -18,6 +18,7 @@ public class AmdApplication {
         return "Hello World";
     }
 
+    @CrossOrigin
     @GetMapping("/searchMovie")
     public String searchMoviesWithName(@RequestParam(value = "title", defaultValue = "") String title,
                                        @RequestParam(value = "id", defaultValue = "") String id) {
