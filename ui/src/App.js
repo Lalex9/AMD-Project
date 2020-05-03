@@ -6,12 +6,8 @@ import {
   Switch
 } from 'react-router-dom';
 
-import {AppMenu} from './components/app-menu/AppMenu'
-import logo from './logo.svg';
-import {
-  PATHS,
-  PATHS_CONFIG
-} from './config/route-config';
+import {AppMenu} from './components/app-menu/AppMenu';
+import {PATHS, PATHS_CONFIG} from './config/route-config';
 
 import './scss/App.scss';
 
