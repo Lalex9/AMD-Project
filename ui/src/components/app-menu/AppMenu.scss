@@ -3,12 +3,13 @@
 .film-results {
     position: absolute;
     top: 60px;
-    right: 10px;
     background: #dfdfdf;
     padding: $padding-base;
     width: 400px;
     box-shadow: $box-shadow-material;
     z-index: 1;
+    margin-left: auto;
+    margin-right: 40%;
 
     .movie {
         padding: $padding-base;
