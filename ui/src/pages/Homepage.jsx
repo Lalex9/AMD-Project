@@ -27,27 +27,27 @@ class Homepage extends React.Component {
                         <Card>
                             <Card.Img variant="top" src="holder.js/100px160" />
                             <Card.Body>
-                                <Card.Title>Movie 1</Card.Title>
+                                <Card.Title>Joker</Card.Title>
                                 <Card.Text>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                         <Card>
                             <Card.Img variant="top" src="holder.js/100px160" />
                             <Card.Body>
-                                <Card.Title>Movie 2</Card.Title>
+                                <Card.Title>Parasite</Card.Title>
                                 <Card.Text>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                         <Card>
                             <Card.Img variant="top" src="holder.js/100px160" />
                             <Card.Body>
-                                <Card.Title>Movie 3</Card.Title>
+                                <Card.Title>Knives out</Card.Title>
                                 <Card.Text>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                A detective investigates the death of a patriarch of an eccentric, combative family.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
