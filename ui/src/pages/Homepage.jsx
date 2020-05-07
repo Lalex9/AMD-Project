@@ -1,31 +1,25 @@
 import React from 'react';
 import {
-    Button,
     Container,
     CardDeck,
     Card,
     Jumbotron
 } from 'react-bootstrap';
 
+
 class Homepage extends React.Component {
     render() {
         return (
             <React.Fragment>
                 <Jumbotron>
-                    <h1>Hello, world!</h1>
-                    <p>
-                        This is a simple hero unit, a simple jumbotron-style component for calling
-                        extra attention to featured content or information.
-                    </p>
-                    <p>
-                        <Button variant="primary">Learn more</Button>
-                    </p>
+                    <img id = "picture" src={require('../static/bond.jpg')} alt = "James Bond" />
+
                 </Jumbotron>
                 <Container fluid>
                     <h3>Trending Movies</h3>
                     <CardDeck>
                         <Card>
-                            <Card.Img variant="top" src="holder.js/100px160" />
+                            <Card.Img className = "pics" variant="top" src={require('../static/joker.jpg')} />
                             <Card.Body>
                                 <Card.Title>Joker</Card.Title>
                                 <Card.Text>
@@ -34,7 +28,7 @@ class Homepage extends React.Component {
                             </Card.Body>
                         </Card>
                         <Card>
-                            <Card.Img variant="top" src="holder.js/100px160" />
+                            <Card.Img className = "pics" variant="top" src={require('../static/parasite.jpg')} />
                             <Card.Body>
                                 <Card.Title>Parasite</Card.Title>
                                 <Card.Text>
@@ -43,9 +37,9 @@ class Homepage extends React.Component {
                             </Card.Body>
                         </Card>
                         <Card>
-                            <Card.Img variant="top" src="holder.js/100px160" />
+                            <Card.Img className = "pics" variant="top" src={require('../static/knivesout.jpg')} />
                             <Card.Body>
-                                <Card.Title>Knives out</Card.Title>
+                            <Card.Title>Knives out</Card.Title>
                                 <Card.Text>
                                 A detective investigates the death of a patriarch of an eccentric, combative family.
                                 </Card.Text>

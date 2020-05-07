@@ -5,6 +5,21 @@
   pointer-events: none;
 }
 
+.pics {
+  height: 370px;
+  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#picture {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+ 
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

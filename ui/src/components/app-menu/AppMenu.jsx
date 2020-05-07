@@ -38,16 +38,12 @@ class AppMenu extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                    <Nav.Link>Menu</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item>Action</NavDropdown.Item>
-                        <NavDropdown.Item>Another action</NavDropdown.Item>
-                        <NavDropdown.Item>Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item>Separated link</NavDropdown.Item>
+                    <NavDropdown title="Menu" id="basic-nav-dropdown">
+                        <NavDropdown.Item>Watch list</NavDropdown.Item>
+                        <NavDropdown.Item>Ratings</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
-                    <Form inline onSubmit={this.handleMovieSearch}>
+                    <Form className = "bttn" inline onSubmit={this.handleMovieSearch}>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         {!_.isEmpty(this.state.moviesResult) && (
                             <div className="film-results">
@@ -61,10 +57,16 @@ class AppMenu extends React.Component {
                             </div>
                         )}
                         <Button type="submit" variant="outline-success">Search</Button>
+
+
+
                     </Form>
+                    <Button type="submit" variant="outline-success">Log in</Button>
+                    <Button type="submit" variant="outline-success">Sign up</Button>
                 </Navbar.Collapse>
             </Navbar>
         );
+        
     }
 }
 
