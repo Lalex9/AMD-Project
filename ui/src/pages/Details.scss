@@ -1,0 +1,9 @@
+@import "src/scss/variables";
+
+.general-info {
+  display: flex;
+
+  .general-info-data {
+    padding: $padding-medium;
+  }
+}
