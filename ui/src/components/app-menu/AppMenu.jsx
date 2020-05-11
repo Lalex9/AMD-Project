@@ -9,6 +9,9 @@ import {
 } from 'react-bootstrap';
 import _ from 'lodash';
 
+import {MovieResults} from '../popups/MovieResults';
+import Endpoint from '../../common/endpoint/endpoint';
+
 import './AppMenu.scss';
 
 class AppMenu extends React.Component {
@@ -16,22 +19,35 @@ class AppMenu extends React.Component {
         super(props);
 
         this.state = {
+            showMovieResult: false,
             moviesResult: []
         }
     }
 
     handleMovieSearch = (event) => {
         const formInput = event.currentTarget.elements[0];
-        const searchQuery = _.get(formInput, 'value', null);
+        const endpointParams = {
+            title: _.get(formInput, 'value', null)
+        }
 
-        fetch(`http://localhost:8080/searchMovie?title=${searchQuery}`).then(response => response.json())
-            .then(data => this.setState({
-                moviesResult: _.get(data, 'Search', [])
-            }));
+        Endpoint.api.searchMovies(endpointParams).then(response =>
+            this.setState({
+                moviesResult: _.get(response, 'Search', []),
+                showMovieResult: true
+            })
+        );
     };
 
+    closePopover = () => {
+        this.setState({
+            showMovieResult: false,
+            moviesResult: []
+        });
+    }
+
     render() {
-        
+        const {showMovieResult, moviesResult} = this.state;
+
         return (
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand>AMD</Navbar.Brand>
@@ -43,23 +59,10 @@ class AppMenu extends React.Component {
                         <NavDropdown.Item>Ratings</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
-                    <Form className = "bttn" inline onSubmit={this.handleMovieSearch}>
+                    <Form className="bttn" inline onSubmit={this.handleMovieSearch}>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        {!_.isEmpty(this.state.moviesResult) && (
-                            <div className="film-results">
-                                {
-                                    this.state.moviesResult.map(movie => (
-                                        <div className="movie">
-                                            {_.get(movie, 'Title', '-')}    
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        )}
+                        {showMovieResult && <MovieResults closePopover={this.closePopover} movies={moviesResult} />}
                         <Button type="submit" variant="outline-success">Search</Button>
-
-
-
                     </Form>
                     <Button type="submit" variant="outline-success">Log in</Button>
                     <Button type="submit" variant="outline-success">Sign up</Button>

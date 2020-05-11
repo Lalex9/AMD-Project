@@ -9,6 +9,7 @@ import {
 import {AppMenu} from './components/app-menu/AppMenu';
 import {PATHS, PATHS_CONFIG} from './config/route-config';
 
+import './scss/overrides.scss';
 import './scss/App.scss';
 
 class App extends React.Component {
