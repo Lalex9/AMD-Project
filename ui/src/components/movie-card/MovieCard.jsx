@@ -22,7 +22,7 @@ class MovieCard extends React.Component {
 
     render() {
         const {title, img, description} = this.props;
-        console.log(this.state.path);
+
         return (
             <Card>
                 {this.state.path && <Redirect to={this.state.path} />}
