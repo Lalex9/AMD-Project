@@ -5,5 +5,14 @@
 
   .general-info-data {
     padding: $padding-medium;
+
+    .general-info-header {
+      display: flex;
+      justify-content: space-between;
+
+      .react-share__ShareButton {
+        padding: 0 $padding-small !important;
+      }
+    }
   }
 }

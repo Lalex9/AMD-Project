@@ -1,12 +1,17 @@
 import React from 'react';
 import {Container, Image, Spinner} from 'react-bootstrap';
-import _ from 'lodash';
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    LinkedinShareButton,
+    EmailIcon,
+    FacebookIcon,
+    LinkedinIcon
+} from 'react-share';
 
 import Endpoint from "../common/endpoint/endpoint";
 
 import './Details.scss';
-
-const MOCK_DATA = {"Title":"Joker","Year":"2019","Rated":"R","Released":"04 Oct 2019","Runtime":"122 min","Genre":"Crime, Drama, Thriller","Director":"Todd Phillips","Writer":"Todd Phillips, Scott Silver, Bob Kane (based on characters created by), Bill Finger (based on characters created by), Jerry Robinson (based on characters created by)","Actors":"Joaquin Phoenix, Robert De Niro, Zazie Beetz, Frances Conroy","Plot":"In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.","Language":"English","Country":"USA, Canada","Awards":"Won 2 Oscars. Another 93 wins & 198 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.5/10"},{"Source":"Rotten Tomatoes","Value":"68%"},{"Source":"Metacritic","Value":"59/100"}],"Metascore":"59","imdbRating":"8.5","imdbVotes":"748,514","imdbID":"tt7286456","Type":"movie","DVD":"N/A","BoxOffice":"N/A","Production":"N/A","Website":"N/A","Response":"True"}
 
 class Details extends React.Component {
     constructor(props) {
@@ -14,20 +19,27 @@ class Details extends React.Component {
 
         this.state = {
             data: {},
-            isLoading: false
+            isLoading: true
         };
     }
 
     componentDidMount() {
-        this.setState({
-            data: MOCK_DATA
-        });
+        const endpointParams = {
+            id: 'tt7286456'
+        };
+
+        Endpoint.api.searchMovies(endpointParams).then(response => {
+            this.setState({
+                data: response,
+                isLoading: false
+            });
+        })
     }
 
     render() {
-        const {data} = this.state;
+        const {data, isLoading} = this.state;
 
-        if (_.isEmpty(data)) {
+        if (isLoading) {
             return (
                 <div className="loader-container">
                     <Spinner animation="border" role="status" />
@@ -39,7 +51,20 @@ class Details extends React.Component {
             <Container className="general-info" fluid>
                 <Image src={data.Poster} />
                 <div className="general-info-data">
-                    <h3>{data.Title}</h3>
+                    <div className="general-info-header">
+                        <h3>{data.Title}</h3>
+                        <div className="share-icons">
+                            <LinkedinShareButton url={window.location.href}>
+                                <LinkedinIcon size={32} round={true} />
+                            </LinkedinShareButton>
+                            <FacebookShareButton url={window.location.href}>
+                                <FacebookIcon size={32} round={true} />
+                            </FacebookShareButton>
+                            <EmailShareButton url={window.location.href}>
+                                <EmailIcon size={32} round={true} />
+                            </EmailShareButton>
+                        </div>
+                    </div>
                     {data.Plot}
                 </div>
             </Container>
