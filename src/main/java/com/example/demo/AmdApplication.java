@@ -1,6 +1,10 @@
 package com.example.demo;
 
 import com.api.OMDbWebServiceClient;
+import com.model.User;
+import com.model.UserRepository;
+import com.model.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -8,27 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @RestController
 public class AmdApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AmdApplication.class, args);
-    }
-
-    @RequestMapping(value="/")
-    public String hello() {
-        return "Hello World";
-    }
-
-    @CrossOrigin
-    @GetMapping("/searchMovie")
-    public String searchMoviesWithName(@RequestParam(value = "title", defaultValue = "") String title,
-                                       @RequestParam(value = "id", defaultValue = "") String id) {
-        if (title.isEmpty() && id.isEmpty()) {
-            return "Use the \"title\" or the \"id\" parameters to acces the endpoint.";
-        }
-
-        if (!id.isEmpty()) {
-            return OMDbWebServiceClient.searchMovieByID(id);
-        }
-        return OMDbWebServiceClient.searchMovieByTitle(title);
     }
 }
