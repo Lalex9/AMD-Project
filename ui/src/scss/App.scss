@@ -13,6 +13,7 @@
 
   .content-routed {
     flex-grow: 1;
+    overflow-x: hidden;
   }
 }
 
@@ -25,7 +26,7 @@
 }
 
 #picture {
-  max-height: 700px;
+  max-height: 800px;
   display: block;
 }
 

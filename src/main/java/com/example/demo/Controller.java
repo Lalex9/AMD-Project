@@ -39,12 +39,13 @@ public class Controller {
         return OMDbWebServiceClient.searchMovieByTitle(title);
     }
 
-
+    @CrossOrigin
     @PostMapping(path="/addUser", consumes = "application/json", produces = "application/json")
     public User addNewUser (@RequestBody User user) {
         return userService.insertUser(user);
     }
 
+    @CrossOrigin
     @PostMapping(path="/register", consumes = "application/json", produces = "application/json")
     public ResponseEntity register (@RequestBody User user) {
         User tempUser = userService.getUserWithEmail(user.getEmail());
@@ -56,6 +57,7 @@ public class Controller {
         }
     }
 
+    @CrossOrigin
     @PostMapping(path="/login", consumes = "application/json", produces = "application/json")
     public ResponseEntity login (@RequestBody User user) {
         User tempUser = userService.getUserWithEmailAndPassword(user.getEmail(), user.getPassword());
@@ -66,6 +68,7 @@ public class Controller {
         }
     }
 
+    @CrossOrigin
     @GetMapping(path="/allUsers")
     public @ResponseBody Iterable<User> getAllUsers() {
         return userService.getAllUsers();

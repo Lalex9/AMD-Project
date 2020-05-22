@@ -10,6 +10,7 @@ import {
 } from 'react-share';
 
 import Endpoint from "../common/endpoint/endpoint";
+import {getUrlParamValue} from "../constants/constants";
 
 import './Details.scss';
 
@@ -24,8 +25,9 @@ class Details extends React.Component {
     }
 
     componentDidMount() {
+        const urlParam = getUrlParamValue('id');
         const endpointParams = {
-            id: 'tt7286456'
+            id: urlParam
         };
 
         Endpoint.api.searchMovies(endpointParams).then(response => {
