@@ -2,7 +2,8 @@ const GET = 'get', POST = 'post';
 
 const HEADERS = {
     ACCEPT: 'Accept',
-    CONTENT_TYPE: 'Content-Type'
+    CONTENT_TYPE: 'Content-Type',
+    MODE: 'mode'
 };
 
 const RESPONSE_FORMAT = {
@@ -26,6 +27,9 @@ const discardResponse = (response, error) => {
 
 const parseJson = (response) => {
     const status = response.status;
+
+    if (response.status === 400) return Promise.reject();
+
     return response.json().catch(parseError => discardResponse(response, parseError))
                           .then(
                               (json) => (response.ok ? json : Promise.reject(json)),
@@ -41,18 +45,18 @@ const responseHandler = {
 const api = {
     get(url) {
         return fetch(url, {
-            BASE_HEADERS,
+            headers: {...BASE_HEADERS},
             method: GET
         }).then(responseHandler.parser).catch((error) => Promise.reject(error));
     },
     post(url, payload) {
         return fetch(url, {
-            BASE_HEADERS,
+            headers: {...BASE_HEADERS},
             method: POST,
             ...payload && {
                 body: JSON.stringify(payload)
             }
-        }).then(responseHandler.parser).catch((error) => Promise.reject(error));
+        }).catch((error) => Promise.reject(error));
     }
 }
 

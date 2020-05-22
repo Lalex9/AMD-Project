@@ -21,6 +21,14 @@ class ImplementationAPI extends AbstractClass(AbstractAPI, []) {
     searchMovies = (params = {}) => {
         return this.get(PATHS.SEARCH_MOVIE, params);
     };
+
+    login = (payload = {}) => {
+        return this.post(PATHS.LOGIN, payload);
+    };
+
+    register = (payload = {}) => {
+        return this.post(PATHS.REGISTER, payload);
+    };
 }
 
 class HttpBasedAPI extends ImplementationAPI {
@@ -38,7 +46,7 @@ class HttpBasedAPI extends ImplementationAPI {
     post(path, payload, params) {
         const baseUrl = 'http://localhost:8080';
         const url = this._url(baseUrl, path, params);
-        return api.get(url, payload);
+        return api.post(url, payload);
     }
 }
 

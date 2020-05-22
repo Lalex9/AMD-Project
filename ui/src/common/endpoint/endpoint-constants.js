@@ -1,8 +1,12 @@
 const METHOD_NAMES = [
-    'searchMovie'
+    'searchMovie',
+    'login',
+    'register'
 ];
 
 const PATHS = {
+    LOGIN: 'login',
+    REGISTER: 'register',
     SEARCH_MOVIE: 'searchMovie'
 };
 
