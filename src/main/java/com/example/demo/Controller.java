@@ -26,6 +26,8 @@ public class Controller {
     WatchlistService watchlistService;
     @Autowired
     ReviewService reviewService;
+    @Autowired
+    ListService listService;
 
     @RequestMapping(value="/")
     public String hello() {
@@ -82,7 +84,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(path="/addMovieToWatchlist")
+    @PostMapping(path="/addMovieToWatchlist", consumes = "application/json", produces = "application/json")
     public ResponseEntity addMovieToWatchlist(@RequestBody WatchlistItem watchlistItem) {
         WatchlistItem tempItem = watchlistService.getWatchlistItemFromEmailAndMovieId(watchlistItem.getEmail(), watchlistItem.getMovieId());
         if (tempItem == null) {
@@ -96,7 +98,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(path = "/removeMovieFromWatchlist")
+    @PostMapping(path = "/removeMovieFromWatchlist", consumes = "application/json", produces = "application/json")
     public ResponseEntity removeMovieFromWatchlist(@RequestBody WatchlistItem watchlistItem) {
         WatchlistItem tempItem = watchlistService.getWatchlistItemFromEmailAndMovieId(watchlistItem.getEmail(), watchlistItem.getMovieId());
         if (tempItem != null){
@@ -140,7 +142,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(path="/addReview")
+    @PostMapping(path="/addReview", consumes = "application/json", produces = "application/json")
     public ResponseEntity addMovieReview(@RequestBody Review review) {
         Review tempItem = reviewService.getReviewFromEmailAndMovieId(review.getEmail(), review.getMovieId());
         if (tempItem == null) {
@@ -154,7 +156,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(path="/updateReview")
+    @PostMapping(path="/updateReview", consumes = "application/json", produces = "application/json")
     public ResponseEntity updateMovieReview(@RequestBody Review review) {
         Review tempItem = reviewService.getReviewFromEmailAndMovieId(review.getEmail(), review.getMovieId());
         if (tempItem != null) {
@@ -168,7 +170,7 @@ public class Controller {
     }
 
     @CrossOrigin
-    @PostMapping(path = "/removeReview")
+    @PostMapping(path = "/removeReview", consumes = "application/json", produces = "application/json")
     public ResponseEntity removeReview(@RequestBody Review review) {
         Review tempItem = reviewService.getReviewFromEmailAndMovieId(review.getEmail(), review.getMovieId());
         if (tempItem != null){
@@ -199,7 +201,20 @@ public class Controller {
 
     @CrossOrigin
     @GetMapping(path="/allReviews")
-    public @ResponseBody Iterable<Review> getAllReviews() {
+    public Iterable<Review> getAllReviews() {
         return reviewService.getAllReviews();
+    }
+
+    @CrossOrigin
+    @PostMapping(path="/addList", consumes = "application/json", produces = "application/json")
+    public ResponseEntity addList(@RequestBody ListEntry listEntry) {
+        listService.saveList(listEntry);
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin
+    @GetMapping(path = "/getList")
+    public ListEntry getList(@RequestParam(value = "listName", defaultValue = "")String listName) {
+        return listService.getListWithName(listName);
     }
 }
