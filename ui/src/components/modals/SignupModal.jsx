@@ -7,7 +7,7 @@ import Endpoint from "../../common/endpoint/endpoint";
 class SignupModal extends React.Component {
     render() {
         return (
-            <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+            <Modal show={this.props.show} onHide={this.props.onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Sign up
