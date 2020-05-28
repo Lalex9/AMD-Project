@@ -1,0 +1,18 @@
+@import "src/scss/variables";
+
+.movie {
+    display: flex;
+    padding: 0 $padding-base;
+
+    img {
+        width: 80px;
+        margin-right: $margin-base;
+    }
+
+    button {
+        float: right;
+        flex: 1 0 auto;
+        height: 40px;
+        margin-left: $margin-base;
+    }
+}
