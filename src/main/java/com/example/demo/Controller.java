@@ -103,7 +103,7 @@ public class Controller {
         WatchlistItem tempItem = watchlistService.getWatchlistItemFromEmailAndMovieId(watchlistItem.getEmail(), watchlistItem.getMovieId());
         if (tempItem != null){
             /// Movie removed from user's watchlist
-            watchlistService.deleteWatchlistItem(watchlistItem);
+            watchlistService.deleteWatchlistItem(tempItem);
             return ResponseEntity.ok().build();
         } else {
             /// Movie could not be found in the watchlist
@@ -175,7 +175,7 @@ public class Controller {
         Review tempItem = reviewService.getReviewFromEmailAndMovieId(review.getEmail(), review.getMovieId());
         if (tempItem != null){
             /// Review removed
-            reviewService.deleteReview(review);
+            reviewService.deleteReview(tempItem);
             return ResponseEntity.ok().build();
         } else {
             /// Review could not be deleted, it probably doesn't exist
