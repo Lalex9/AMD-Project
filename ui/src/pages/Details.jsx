@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Image, Spinner} from 'react-bootstrap';
+import {Button, Container, Image, Spinner} from 'react-bootstrap';
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -8,6 +8,7 @@ import {
     FacebookIcon,
     LinkedinIcon
 } from 'react-share';
+import {connect} from "react-redux";
 
 import Endpoint from "../common/endpoint/endpoint";
 import {getUrlParamValue} from "../constants/constants";
@@ -38,8 +39,21 @@ class Details extends React.Component {
         })
     }
 
+    addMovieToWatchlist = () => {
+        const urlParam = getUrlParamValue('id');
+        const payload = {
+            email: this.props.userEmail,
+            movieId: urlParam
+        };
+
+        Endpoint.api.addUserWatchlist(payload).then(response => {
+
+        });
+    }
+
     render() {
         const {data, isLoading} = this.state;
+        const {userLogged} = this.props;
 
         if (isLoading) {
             return (
@@ -67,11 +81,19 @@ class Details extends React.Component {
                             </EmailShareButton>
                         </div>
                     </div>
-                    {data.Plot}
+                    <div className="mb-5">{data.Plot}</div>
+                    {userLogged && <Button onClick={this.addMovieToWatchlist}>Add movie to your watchlist</Button>}
                 </div>
             </Container>
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+        userEmail: state.userEmail,
+        userLogged: state.userLogged
+    };
+};
 
+Details = connect(mapStateToProps, null)(Details);
 export {Details};

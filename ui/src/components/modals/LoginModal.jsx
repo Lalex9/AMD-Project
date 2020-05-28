@@ -31,7 +31,10 @@ class LoginModal extends React.Component {
                         }}
                         onSubmit={(values) => {
                             Endpoint.api.login(values).then(response => {
-                                this.props.setUserState(true);
+                                this.props.setUserState({
+                                    user: values.email,
+                                    isLogged: true
+                                });
                                 this.props.onHide();
                             }).catch(error => {
 

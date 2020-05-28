@@ -1,11 +1,13 @@
 const initialState = {
+    userEmail: "",
     userLogged: false
 };
 
 function rootReducer(state = initialState, action) {
     if (action.type === "SET_USER") {
         return Object.assign({}, state, {
-            userLogged: action.payload
+            userEmail: action.payload.user,
+            userLogged: action.payload.isLogged
         });
     }
 

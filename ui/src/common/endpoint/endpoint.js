@@ -29,6 +29,18 @@ class ImplementationAPI extends AbstractClass(AbstractAPI, []) {
     register = (payload = {}) => {
         return this.post(PATHS.REGISTER, payload);
     };
+
+    addUserWatchlist = (payload = {}) => {
+        return this.post(PATHS.ADD_USER_WATCHLIST, payload);
+    }
+
+    removeUserWatchlist = (payload = {}) => {
+        return this.post(PATHS.REMOVE_USER_WATCHLIST, payload);
+    }
+
+    getUserWatchlist = (params = {}) => {
+        return this.get(PATHS.GET_USER_WATCHLIST, params);
+    }
 }
 
 class HttpBasedAPI extends ImplementationAPI {

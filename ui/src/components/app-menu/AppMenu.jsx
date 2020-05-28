@@ -12,6 +12,7 @@ import _ from 'lodash';
 
 import {SignupModal} from "../modals/SignupModal";
 import {LoginModal} from "../modals/LoginModal";
+import {WatchlistModal} from "../modals/WatchlistModal";
 import {MovieResults} from '../popups/MovieResults';
 import Endpoint from '../../common/endpoint/endpoint';
 import {setUser} from "../../state/actions";
@@ -27,7 +28,8 @@ class AppMenu extends React.Component {
             moviesResult: [],
             showModals: {
                 signup: false,
-                login: false
+                login: false,
+                watchlist: false
             }
         }
     }
@@ -64,10 +66,11 @@ class AppMenu extends React.Component {
     }
 
     render() {
-        const {userLogged, setUser} = this.props;
+        const {userLogged, setUser, userEmail} = this.props;
         const {showMovieResult, moviesResult, showModals} = this.state;
         const toggleSignup = () => this.toggleModal('signup');
         const toggleLogin = () => this.toggleModal('login');
+        const toggleWatchlist = () => this.toggleModal('watchlist');
 
         return (
             <Navbar bg="light" expand="lg">
@@ -77,7 +80,7 @@ class AppMenu extends React.Component {
                     {userLogged && (
                         <Nav className="mr-auto">
                             <NavDropdown title="My preferences" id="basic-nav-dropdown">
-                                <NavDropdown.Item>Watch list</NavDropdown.Item>
+                                <NavDropdown.Item onClick={toggleWatchlist}>Watch list</NavDropdown.Item>
                                 <NavDropdown.Item>Ratings</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
@@ -96,6 +99,7 @@ class AppMenu extends React.Component {
                         <p>Welcome back!</p>
                     )}
                 </Navbar.Collapse>
+                <WatchlistModal show={showModals.watchlist} onHide={toggleWatchlist} user={userEmail} />
                 <SignupModal show={showModals.signup} onHide={toggleSignup} />
                 <LoginModal show={showModals.login} onHide={toggleLogin} setUserState={setUser} />
             </Navbar>
@@ -106,6 +110,7 @@ class AppMenu extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        userEmail: state.userEmail,
         userLogged: state.userLogged
     };
 };
