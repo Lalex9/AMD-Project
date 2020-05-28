@@ -1,10 +1,10 @@
 import queryString from 'query-string';
 
 const getUrlParamValue = (param) => {
-    const idx = location.href.indexOf("?");
+    const idx = window.location.href.indexOf("?");
 
     if (idx !== -1) {
-        const queryStringFormatted = queryString.parse(location.search);
+        const queryStringFormatted = queryString.parse(window.location.search);
         return queryStringFormatted[param];
     }
 

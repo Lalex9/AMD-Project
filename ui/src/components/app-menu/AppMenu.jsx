@@ -33,6 +33,7 @@ class AppMenu extends React.Component {
     }
 
     handleMovieSearch = (event) => {
+        event.preventDefault();
         const formInput = event.currentTarget.elements[0];
         const endpointParams = {
             title: _.get(formInput, 'value', null)
