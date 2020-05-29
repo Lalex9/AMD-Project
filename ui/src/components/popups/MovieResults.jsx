@@ -1,7 +1,10 @@
 import React from 'react';
 import {Image} from 'react-bootstrap';
+import {Link} from "react-router-dom";
 import onClickOutside from "react-onclickoutside";
 import _ from 'lodash';
+
+import {PATHS} from "../../config/route-config";
 
 import './MovieResults.scss';
 
@@ -18,17 +21,19 @@ class MovieResults extends React.Component {
                 {!_.isEmpty(movies) && (
                     <div className="film-results">
                         {
-                            movies.map(movie => (
-                                <React.Fragment>
+                            movies.slice(0, 5).map(movie => (
+                                <Link to={{
+                                    pathname: PATHS.details,
+                                    search: `?id=${movie.imdbID}`
+                                }}>
                                     <div className="movie">
                                         <Image src={movie.Poster} rounded />
                                         {_.get(movie, 'Title', '-')}
                                     </div>
                                     <hr />
-                                </React.Fragment>
+                                </Link>
                             ))
                         }
-                    <p>Search more on browse..</p>
                     </div>
                 )}
             </React.Fragment>

@@ -4,8 +4,8 @@ import {
     CardDeck,
     Carousel
 } from 'react-bootstrap';
-import {MovieCard} from "../components/movie-card/MovieCard";
 
+import {MovieCard} from "../components/movie-card/MovieCard";
 
 class Homepage extends React.Component {
     render() {

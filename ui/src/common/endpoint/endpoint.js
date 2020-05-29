@@ -41,6 +41,26 @@ class ImplementationAPI extends AbstractClass(AbstractAPI, []) {
     getUserWatchlist = (params = {}) => {
         return this.get(PATHS.GET_USER_WATCHLIST, params);
     }
+
+    addReview = (payload = {}) => {
+        return this.post(PATHS.ADD_REVIEW, payload);
+    }
+
+    removeReview = (payload = {}) => {
+        return this.post(PATHS.REMOVE_REVIEW, payload);
+    }
+
+    updateReview = (payload = {}) => {
+        return this.post(PATHS.UPDATE_REVIEW, payload);
+    }
+
+    getUserReviews = (params = {}) => {
+        return this.get(PATHS.GET_REVIEWS_USER, params);
+    }
+
+    getMovieReviews = (params = {}) => {
+        return this.get(PATHS.GET_REVIEWS_MOVIE, params);
+    }
 }
 
 class HttpBasedAPI extends ImplementationAPI {
