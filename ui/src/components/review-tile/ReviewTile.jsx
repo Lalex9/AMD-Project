@@ -23,4 +23,4 @@ class ReviewTile extends React.Component {
     }
 }
 
-export {ReviewTile};
+export {ReviewTile, Star};

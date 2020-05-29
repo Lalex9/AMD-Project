@@ -113,8 +113,16 @@ class Details extends React.Component {
                                 </EmailShareButton>
                             </div>
                         </div>
-                        <div className="mb-5">{data.Plot}</div>
-                        {userLogged && <Button onClick={this.addMovieToWatchlist}>Add movie to your watchlist</Button>}
+                        <div className="mb-1">{data.Released} - {data.Runtime}</div>
+                        <div className="mb-3">Genre: {data.Genre}</div>
+                        <div className="mb-2">{data.Plot}</div>
+                        <h5 className="mt-4">Ratings</h5>
+                        <div className="mt-1">
+                            {data.Ratings.map(rating => <div>{` ${rating.Source} - ${rating.Value} `}</div>)}
+                        </div>
+                        <h5 className="mt-4">Awards</h5>
+                        <div className="mt-1">{data.Awards}</div>
+                        {userLogged && <Button className="mt-4" onClick={this.addMovieToWatchlist}>Add movie to your watchlist</Button>}
                     </div>
                 </Container>
                 <br />
