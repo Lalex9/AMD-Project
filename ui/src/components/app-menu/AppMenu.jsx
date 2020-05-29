@@ -8,14 +8,17 @@ import {
     Button
 } from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 import _ from 'lodash';
 
 import {SignupModal} from "../modals/SignupModal";
 import {LoginModal} from "../modals/LoginModal";
 import {WatchlistModal} from "../modals/WatchlistModal";
 import {MovieResults} from '../popups/MovieResults';
+import {ReviewsModal} from "../modals/ReviewsModal";
 import Endpoint from '../../common/endpoint/endpoint';
 import {setUser} from "../../state/actions";
+import {PATHS} from "../../config/route-config";
 
 import './AppMenu.scss';
 
@@ -29,7 +32,8 @@ class AppMenu extends React.Component {
             showModals: {
                 signup: false,
                 login: false,
-                watchlist: false
+                watchlist: false,
+                reviews: false
             }
         }
     }
@@ -47,7 +51,7 @@ class AppMenu extends React.Component {
                 showMovieResult: true
             })
         );
-    };
+    }
 
     closePopover = () => {
         this.setState({
@@ -65,23 +69,33 @@ class AppMenu extends React.Component {
         }));
     }
 
+    handleLogOut = () => {
+        this.props.setUser({
+            userEmail: "",
+            userLogged: false
+        });
+    }
+
     render() {
         const {userLogged, setUser, userEmail} = this.props;
         const {showMovieResult, moviesResult, showModals} = this.state;
         const toggleSignup = () => this.toggleModal('signup');
         const toggleLogin = () => this.toggleModal('login');
         const toggleWatchlist = () => this.toggleModal('watchlist');
+        const toggleReviews = () => this.toggleModal('reviews');
 
         return (
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand>AMD</Navbar.Brand>
+                <Navbar.Brand className="logo">
+                    <Link to={PATHS.homepage}>AMD</Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     {userLogged && (
                         <Nav className="mr-auto">
                             <NavDropdown title="My preferences" id="basic-nav-dropdown">
                                 <NavDropdown.Item onClick={toggleWatchlist}>Watch list</NavDropdown.Item>
-                                <NavDropdown.Item>Ratings</NavDropdown.Item>
+                                <NavDropdown.Item onClick={toggleReviews}>Reviews</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     )}
@@ -96,10 +110,20 @@ class AppMenu extends React.Component {
                             <Button onClick={toggleSignup} type="submit" variant="outline-success">Sign up</Button>
                         </React.Fragment>
                     ) : (
-                        <p>Welcome back!</p>
+                        <React.Fragment>
+                            <Navbar.Text className="mr-2">
+                                Welcome back!
+                            </Navbar.Text>
+                            <Button onClick={this.handleLogOut}>Log out</Button>
+                        </React.Fragment>
                     )}
                 </Navbar.Collapse>
-                <WatchlistModal show={showModals.watchlist} onHide={toggleWatchlist} user={userEmail} />
+                {userLogged && (
+                    <React.Fragment>
+                        <ReviewsModal show={showModals.reviews} onHide={toggleReviews} user={userEmail} />
+                        <WatchlistModal show={showModals.watchlist} onHide={toggleWatchlist} user={userEmail} />
+                    </React.Fragment>
+                )}
                 <SignupModal show={showModals.signup} onHide={toggleSignup} />
                 <LoginModal show={showModals.login} onHide={toggleLogin} setUserState={setUser} />
             </Navbar>

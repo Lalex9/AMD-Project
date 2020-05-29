@@ -4,7 +4,12 @@ const METHOD_NAMES = [
     'register',
     'addMovieToWatchlist',
     'removeMovieFromWatchlist',
-    'getAllWatchlistItemsFromUser'
+    'getAllWatchlistItemsFromUser',
+    'addReview',
+    'updateReview',
+    'removeReview',
+    'getAllReviewsFromUser',
+    'getAllReviewsForMovie'
 ];
 
 const PATHS = {
@@ -13,7 +18,12 @@ const PATHS = {
     SEARCH_MOVIE: 'searchMovie',
     ADD_USER_WATCHLIST: 'addMovieToWatchlist',
     REMOVE_USER_WATCHLIST: 'removeMovieFromWatchlist',
-    GET_USER_WATCHLIST: 'getAllWatchlistItemsFromUser'
+    GET_USER_WATCHLIST: 'getAllWatchlistItemsFromUser',
+    ADD_REVIEW: 'addReview',
+    UPDATE_REVIEW: 'updateReview',
+    REMOVE_REVIEW: 'removeReview',
+    GET_REVIEWS_USER: 'getAllReviewsFromUser',
+    GET_REVIEWS_MOVIE: 'getAllReviewsForMovie'
 };
 
 export {
