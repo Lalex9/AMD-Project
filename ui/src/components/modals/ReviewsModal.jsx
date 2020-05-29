@@ -75,6 +75,7 @@ class ReviewsModal extends React.Component {
                                     reviews.map(userReview => (
                                         <React.Fragment>
                                             <div className="review">
+                                                <div className="mb-1">Movie ID: {userReview.movieId}</div>
                                                 <ReviewTile userReview={userReview} />
                                                 <br />
                                                 <Button onClick={() => this.removeReview(userReview)}>Remove review</Button>

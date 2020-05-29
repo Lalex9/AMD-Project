@@ -21,6 +21,7 @@ import {setUser} from "../../state/actions";
 import {PATHS} from "../../config/route-config";
 
 import './AppMenu.scss';
+import {AdminModal} from "../modals/AdminModal";
 
 class AppMenu extends React.Component {
     constructor(props) {
@@ -33,7 +34,8 @@ class AppMenu extends React.Component {
                 signup: false,
                 login: false,
                 watchlist: false,
-                reviews: false
+                reviews: false,
+                admin: false
             }
         }
     }
@@ -83,6 +85,7 @@ class AppMenu extends React.Component {
         const toggleLogin = () => this.toggleModal('login');
         const toggleWatchlist = () => this.toggleModal('watchlist');
         const toggleReviews = () => this.toggleModal('reviews');
+        const toggleAdmin = () => this.toggleModal('admin');
 
         return (
             <Navbar bg="light" expand="lg">
@@ -114,12 +117,14 @@ class AppMenu extends React.Component {
                             <Navbar.Text className="mr-2">
                                 Welcome back!
                             </Navbar.Text>
+                            {userEmail === "admin@admin" && <Button className="mr-2" onClick={toggleAdmin}>Admin modal</Button>}
                             <Button onClick={this.handleLogOut}>Log out</Button>
                         </React.Fragment>
                     )}
                 </Navbar.Collapse>
                 {userLogged && (
                     <React.Fragment>
+                        <AdminModal show={showModals.admin} onHide={toggleAdmin} />
                         <ReviewsModal show={showModals.reviews} onHide={toggleReviews} user={userEmail} />
                         <WatchlistModal show={showModals.watchlist} onHide={toggleWatchlist} user={userEmail} />
                     </React.Fragment>

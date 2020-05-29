@@ -36,11 +36,14 @@ class Details extends React.Component {
             id: urlParam
         };
 
-        Endpoint.api.searchMovies(endpointParams).then(response => {
+        const promises = [Endpoint.api.searchMovies(endpointParams), Endpoint.api.getMovieReviews({movieId: urlParam})];
+
+        Promise.all(promises).then(responses => {
             this.setState({
-                data: response,
+                data: responses[0],
+                reviews: responses[1],
                 isLoading: false
-            });
+            })
         });
     }
 
@@ -76,7 +79,12 @@ class Details extends React.Component {
             }
         ))
 
-        let reviewsContent = reviews.map(review => <ReviewTile userReview={review} />);
+        let reviewsContent = reviews.map(review => (
+            <div className="mt-4">
+                {review.email}
+                <ReviewTile userReview={review} />
+            </div>
+        ));
 
         if (_.isEmpty(reviews)) {
             reviewsContent = (

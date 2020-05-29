@@ -30,15 +30,23 @@ class LoginModal extends React.Component {
                             return errors;
                         }}
                         onSubmit={(values) => {
-                            Endpoint.api.login(values).then(response => {
+                            if (values.email === "admin" && values.password === "admin") {
                                 this.props.setUserState({
-                                    user: values.email,
+                                    user: "admin@admin",
                                     isLogged: true
                                 });
                                 this.props.onHide();
-                            }).catch(error => {
+                            } else {
+                                Endpoint.api.login(values).then(response => {
+                                    this.props.setUserState({
+                                        user: values.email,
+                                        isLogged: true
+                                    });
+                                    this.props.onHide();
+                                }).catch(error => {
 
-                            });
+                                });
+                            }
                         }} >
                         {(props) => (
                             <Form onSubmit={props.handleSubmit}>

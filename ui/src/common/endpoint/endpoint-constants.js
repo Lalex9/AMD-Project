@@ -9,7 +9,9 @@ const METHOD_NAMES = [
     'updateReview',
     'removeReview',
     'getAllReviewsFromUser',
-    'getAllReviewsForMovie'
+    'getAllReviewsForMovie',
+    'addList',
+    'getList'
 ];
 
 const PATHS = {
@@ -23,7 +25,9 @@ const PATHS = {
     UPDATE_REVIEW: 'updateReview',
     REMOVE_REVIEW: 'removeReview',
     GET_REVIEWS_USER: 'getAllReviewsFromUser',
-    GET_REVIEWS_MOVIE: 'getAllReviewsForMovie'
+    GET_REVIEWS_MOVIE: 'getAllReviewsForMovie',
+    SAVE_LIST: 'addList',
+    GET_LIST: 'getList'
 };
 
 export {

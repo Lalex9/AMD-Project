@@ -61,6 +61,14 @@ class ImplementationAPI extends AbstractClass(AbstractAPI, []) {
     getMovieReviews = (params = {}) => {
         return this.get(PATHS.GET_REVIEWS_MOVIE, params);
     }
+
+    saveList = (params = {}) => {
+        return this.post(PATHS.SAVE_LIST, params);
+    }
+
+    getList = (params = {}) => {
+        return this.get(PATHS.GET_LIST, params);
+    }
 }
 
 class HttpBasedAPI extends ImplementationAPI {
